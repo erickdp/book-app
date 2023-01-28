@@ -2,6 +2,7 @@ package com.programacion.controller;
 
 import com.programacion.dto.Book;
 import com.programacion.service.BookService;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
+@ApplicationScoped
 @Path("/book")
 public class BookController {
     @Inject
