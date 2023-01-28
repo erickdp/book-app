@@ -3,12 +3,14 @@ package com.programacion.config;
 import com.programacion.dto.Book;
 import io.helidon.dbclient.DbMapper;
 import io.helidon.dbclient.DbRow;
+import jakarta.enterprise.context.ApplicationScoped;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@ApplicationScoped
 public class BookMapper implements DbMapper<Book> {
     @Override
     public Book read(DbRow row) {

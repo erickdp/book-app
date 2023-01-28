@@ -30,8 +30,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public Book findOne(int id) throws ExecutionException, InterruptedException {
         Optional<DbRow> dbRow = this.dbClient
-                .execute(exe -> exe.namedGet("find-one", id))
-                .get();
+                .execute(exe -> exe.createGet("SELECT * FROM books WHERE id = :id").addParam("id", 1).execute()).get();
 
         return dbRow.isPresent() ? this.bookMapper.read(dbRow.get()) : new Book();
     }
