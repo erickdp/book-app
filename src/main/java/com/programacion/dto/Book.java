@@ -11,7 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Book {
     private int id;
-    private int authorId;
+    private Author author;
     private String isbn;
     private String title;
     private double price;

@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public interface BookService {
-    List<?> findAll();
+    List<Book> findAll() throws ExecutionException, InterruptedException;
     Book findOne(int id) throws ExecutionException, InterruptedException;
-    Book save(Book book);
-    Book update(Book book);
-    Book delete(int id);
+    long save(Book book);
+    long update(Book book);
+    long delete(int id);
 }
