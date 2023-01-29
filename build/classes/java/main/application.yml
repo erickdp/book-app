@@ -4,9 +4,3 @@ db:
     url: jdbc:postgresql://arjuna.db.elephantsql.com:5432/hebzkbet
     username: hebzkbet
     password: hNIb6nhqrRSiNhyYXbZVlkQbUFNL5jKY
-  statements:
-    ping: "DO 0"
-    create-table: "CREATE TABLE pokemons (name VARCHAR(64) NOT NULL PRIMARY KEY, type VARCHAR(32))"
-    find-one: "SELECT isbn FROM books WHERE id = :id"
-    find-all: "SELECT isbn FROM Books"
-    insert-one: "INSERT INTO BOOKS (author_id, isbn, title, price) VALUES(:authorId, :isbn, :title, :price)"

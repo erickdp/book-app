@@ -10,6 +10,7 @@ import jakarta.ws.rs.core.Response;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
+import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 import static jakarta.ws.rs.core.Response.Status.ACCEPTED;
 
 @ApplicationScoped
@@ -20,35 +21,35 @@ public class BookController {
 
     @GET
     @Path("/{id}")
-    @Produces("application/json")
+    @Produces(APPLICATION_JSON)
     public Book findOneById(@PathParam("id") long id) throws ExecutionException, InterruptedException {
         return this.bookService.findOne(id);
     }
 
     @GET
-    @Produces("application/json")
+    @Produces(APPLICATION_JSON)
     public Response findAll() throws ExecutionException, InterruptedException {
         return Response.status(ACCEPTED).entity(bookService.findAll()).build();
     }
 
     @PUT
     @Path("/{id}")
-    @Consumes("application/json")
-    @Produces("application/json")
+    @Consumes(APPLICATION_JSON)
+    @Produces(APPLICATION_JSON)
     public Map<String, Long> update(@PathParam("id") long id, Book book) {
         return Map.of("rowsChanged", this.bookService.update(id, book));
     }
 
     @POST
-    @Consumes("application/json")
-    @Produces("application/json")
+    @Consumes(APPLICATION_JSON)
+    @Produces(APPLICATION_JSON)
     public Map<String, Long> save(Book book) {
         return Map.of("rowsChanged", this.bookService.save(book));
     }
 
     @DELETE
     @Path("/{id}")
-    @Produces("application/json")
+    @Produces(APPLICATION_JSON)
     public Map<String, Long> delete(@PathParam("id") long id) {
         return Map.of("rowsChanged", this.bookService.delete(id));
     }
