@@ -29,7 +29,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book findOne(int id) throws ExecutionException, InterruptedException {
+    public Book findOne(long id) throws ExecutionException, InterruptedException {
         Optional<DbRow> dbRow = this.dbClient
                 .execute(exe -> exe.createGet("SELECT a.id as author_id, a.first_name, a.last_name, b.id, b.title, b.isbn, b.price FROM book b JOIN author a ON b.id = a.id WHERE b.id = :id").addParam("id", id).execute()).get();
 
@@ -52,13 +52,13 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public long update(Book book) {
+    public long update(long id, Book book) {
         var rowsChanged = 0L;
         try {
             rowsChanged = this.dbClient
                     .execute(exec -> exec
                             .update("UPDATE book SET author_id = ?, isbn = ?, title = ?, price = ? WHERE id = ?",
-                                    book.getAuthor().getId(), book.getIsbn(), book.getTitle(), book.getPrice(), book.getId()
+                                    book.getAuthor().getId(), book.getIsbn(), book.getTitle(), book.getPrice(), id
                             )).get();
         } catch (Exception e) {
             e.printStackTrace();
@@ -67,7 +67,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public long delete(int id) {
+    public long delete(long id) {
         var rowsChanged = 0L;
         try {
             rowsChanged = this.dbClient

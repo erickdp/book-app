@@ -7,8 +7,8 @@ import java.util.concurrent.ExecutionException;
 
 public interface BookService {
     List<Book> findAll() throws ExecutionException, InterruptedException;
-    Book findOne(int id) throws ExecutionException, InterruptedException;
+    Book findOne(long id) throws ExecutionException, InterruptedException;
     long save(Book book);
-    long update(Book book);
-    long delete(int id);
+    long update(long id, Book book);
+    long delete(long id);
 }
