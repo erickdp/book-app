@@ -2,8 +2,6 @@ package com.programacion.service;
 
 import com.programacion.dto.Book;
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
-import jakarta.inject.Named;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
@@ -47,11 +45,7 @@ public class BookServiceImpl implements BookService {
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
-        try {
-            this.entityManager.merge(book);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        this.entityManager.persist(book);
 //        return rowsChanged;
     }
 
