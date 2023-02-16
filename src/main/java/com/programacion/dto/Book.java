@@ -10,7 +10,8 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Book implements Serializable {

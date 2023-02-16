@@ -2,8 +2,11 @@ package com.programacion.service;
 
 import com.programacion.dto.Book;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -32,6 +35,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    @Transactional
     public void save(Book book) {
 //        var rowsChanged = 0L;
 //        try {
@@ -43,19 +47,16 @@ public class BookServiceImpl implements BookService {
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
-        var tx = this.entityManager.getTransaction();
         try {
-            tx.begin();
-            this.entityManager.persist(book);
-            this.entityManager.flush();
-            tx.commit();
+            this.entityManager.merge(book);
         } catch (Exception e) {
-            tx.rollback();
+            e.printStackTrace();
         }
 //        return rowsChanged;
     }
 
     @Override
+    @Transactional
     public void update(long id, Book book) {
 //        var rowsChanged = 0L;
 //        try {
@@ -73,18 +74,11 @@ public class BookServiceImpl implements BookService {
         oldBook.setIsbn(book.getIsbn());
         oldBook.setTitle(book.getTitle());
         oldBook.setPrice(book.getPrice());
-        var tx = this.entityManager.getTransaction();
-        try {
-            tx.begin();
-            this.entityManager.merge(oldBook);
-            this.entityManager.flush();
-            tx.commit();
-        } catch (Exception e) {
-            tx.rollback();
-        }
+        this.entityManager.merge(oldBook);
     }
 
     @Override
+    @Transactional
     public void delete(long id) {
 //        var rowsChanged = 0L;
 //        try {
@@ -97,16 +91,8 @@ public class BookServiceImpl implements BookService {
 //            e.printStackTrace();
 //        }
 //        return rowsChanged;
-        var tx = this.entityManager.getTransaction();
-        try {
-            tx.begin();
-            var query = this.entityManager.createQuery("DELETE FROM Book b WHERE b.id = :id");
-            query.setParameter("id", id);
-            query.executeUpdate();
-            this.entityManager.flush();
-            tx.commit();
-        } catch (Exception e) {
-            tx.rollback();
-        }
+        var query = this.entityManager.createQuery("DELETE FROM Book b WHERE b.id = :id");
+        query.setParameter("id", id);
+        query.executeUpdate();
     }
 }

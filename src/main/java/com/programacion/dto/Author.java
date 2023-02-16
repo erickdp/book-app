@@ -9,7 +9,8 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Author implements Serializable {
