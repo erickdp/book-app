@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.io.Serializable;
 
+import static jakarta.persistence.CascadeType.ALL;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
@@ -17,7 +18,8 @@ public class Book implements Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private long id;
-    @ManyToOne
+    @ManyToOne(optional = false, cascade = ALL)
+    @JoinColumn(name = "author_id")
     private Author author;
     private String isbn;
     private String title;
