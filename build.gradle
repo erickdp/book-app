@@ -32,20 +32,11 @@ dependencies {
     implementation 'org.jboss:jandex'
 
     implementation 'io.helidon.integrations.cdi:helidon-integrations-cdi-jta-weld'
-//    implementation 'io.helidon.integrations.cdi:helidon-integrations-cdi-jpa'
 
-
-//    implementation 'jakarta.activation:jakarta.activation-api'
-//    implementation 'jakarta.annotation:jakarta.annotation-api'
-//    implementation 'jakarta.enterprise:jakarta.enterprise.cdi-api'
-//    implementation 'jakarta.inject:jakarta.inject-api'
-//    implementation 'jakarta.ws.rs:jakarta.ws.rs-api'
-    implementation 'io.helidon.integrations.cdi:helidon-integrations-cdi-jpa'
+    implementation ('io.helidon.integrations.cdi:helidon-integrations-cdi-jpa') {
+        exclude group: 'com.sun.xml.bind'
+    }
     implementation 'jakarta.persistence:jakarta.persistence-api'
-//    implementation 'jakarta.transaction:jakarta.transaction-api'
-
-
-//    implementation 'jakarta.platform:jakarta.jakartaee-api:9.1.0'
 
     implementation 'org.glassfish:jakarta.el'
 
