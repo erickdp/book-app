@@ -1,6 +1,0 @@
-db:
-  source: jdbc
-  connection:
-    url: jdbc:postgresql://arjuna.db.elephantsql.com:5432/hebzkbet
-    username: hebzkbet
-    password: hNIb6nhqrRSiNhyYXbZVlkQbUFNL5jKY

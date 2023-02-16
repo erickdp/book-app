@@ -7,7 +7,6 @@ import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
 
-import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
@@ -36,21 +35,27 @@ public class BookController {
     @Path("/{id}")
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
-    public Map<String, Long> update(@PathParam("id") long id, Book book) {
-        return Map.of("rowsChanged", this.bookService.update(id, book));
+    public Response update(@PathParam("id") long id, Book book) {
+//        return Map.of("rowsChanged", this.bookService.update(id, book));
+        this.bookService.update(id, book);
+        return Response.accepted().build();
     }
 
     @POST
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
-    public Map<String, Long> save(Book book) {
-        return Map.of("rowsChanged", this.bookService.save(book));
+    public Response save(Book book) {
+//        return Map.of("rowsChanged", this.bookService.save(book));
+        this.bookService.save(book);
+        return Response.accepted().build();
     }
 
     @DELETE
     @Path("/{id}")
     @Produces(APPLICATION_JSON)
-    public Map<String, Long> delete(@PathParam("id") long id) {
-        return Map.of("rowsChanged", this.bookService.delete(id));
+    public Response delete(@PathParam("id") long id) {
+//        return Map.of("rowsChanged", this.bookService.delete(id));
+        this.bookService.delete(id);
+        return Response.accepted().build();
     }
 }
