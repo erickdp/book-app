@@ -1,0 +1,105 @@
+openapi: 3.0.3
+info:
+  title: app-books API
+  version: 1.0-SNAPSHOT
+paths:
+  /api/book:
+    get:
+      tags:
+        - Book Rest
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+    post:
+      tags:
+        - Book Rest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+      responses:
+        "200":
+          description: OK
+  /api/book/{id}:
+    get:
+      tags:
+        - Book Rest
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            format: int64
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+    put:
+      tags:
+        - Book Rest
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            format: int64
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+      responses:
+        "200":
+          description: OK
+    delete:
+      tags:
+        - Book Rest
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            format: int64
+            type: integer
+      responses:
+        "200":
+          description: OK
+components:
+  schemas:
+    Author:
+      type: object
+      properties:
+        id:
+          format: int64
+          type: integer
+        firstName:
+          type: string
+        lastName:
+          type: string
+    Book:
+      type: object
+      properties:
+        id:
+          format: int64
+          type: integer
+        author:
+          type: object
+        isbn:
+          type: string
+        title:
+          type: string
+        price:
+          format: double
+          type: number

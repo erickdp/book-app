@@ -49,6 +49,8 @@ dependencies {
 
     implementation 'org.glassfish:jakarta.el'
 
+    implementation 'io.helidon.microprofile.openapi:helidon-microprofile-openapi'
+    implementation 'io.helidon.integrations.openapi-ui:helidon-integrations-openapi-ui'
 }
 
 sourceSets {
